@@ -2,7 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import axios from "axios";
 
-const backendURL = process.env.BACKEND_USER_URL || "http://localhost:8080";
+const backendURL = process.env.BACKEND_URL || "http://localhost:8080";
 
 export const authOptions: NextAuthOptions = {
   providers: [

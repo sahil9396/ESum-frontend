@@ -1,18 +1,7 @@
-import axios from "axios";
+import { fetchPost } from "@/lib/mail-server-action";
 import { ArrowLeft, RotateCcw, Trash2, Copy } from "lucide-react";
 import Link from "next/link";
 
-const fetchPost = async (emailid: string) => {
-  const backendUrl = process.env.BACKEND_URL;
-  try {
-    const {
-      data: { data },
-    } = await axios.get(`${backendUrl}/summary-generator?emailId=${emailid}`);
-    return data;
-  } catch (error) {
-    console.error("Error fetching data", error);
-  }
-};
 
 const EmailDetail = async ({
   params: { emailid },
