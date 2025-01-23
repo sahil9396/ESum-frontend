@@ -1,4 +1,3 @@
-import EmailDataProvider from "@/providers/email-data";
 import React from "react";
 
 type Props = {
@@ -6,7 +5,7 @@ type Props = {
 };
 
 const DashBoardLayout = ({ children }: Props) => {
-  return <EmailDataProvider>{children}</EmailDataProvider>;
+  return <>{children}</>;
 };
 
 export default DashBoardLayout;

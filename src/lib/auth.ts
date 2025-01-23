@@ -152,12 +152,9 @@ type refreshTokenResponse = {
 
 const refreshTokenCall = async (email: string) => {
   try {
-    const response = await axios.post(
-      backendURL + "/user/refresh",
-      {
-        email: email,
-      }
-    );
+    const response = await axios.post(backendURL + "/user/refresh", {
+      email: email,
+    });
     const data: refreshTokenResponse = response.data;
     return data;
   } catch (error) {

@@ -15,13 +15,9 @@ export type messageBodyType = {
 
 export type responseType = {
   id: string;
-  threadId: string;
-  labelIds: string[];
-  snippet: string;
-  payload: messageBodyType;
-  internalDate: string;
-  body: bodyType;
-  nextPageToken: string;
+  title: string;
+  content: string;
+  from: string;
 };
 
 export type postType = {
