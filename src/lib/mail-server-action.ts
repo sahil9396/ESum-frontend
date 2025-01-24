@@ -34,9 +34,10 @@ export const fetchPost = async (emailid: string) => {
   try {
     const {
       data: { data },
-    } = await axios.get(`${backendUrl}/user-mail?emailId=${emailid}`);
+    } = await axios.get(`${backendUrl}/summary?emailId=${emailid}`);
     return data;
   } catch (error) {
     console.error("Error fetching data", error);
+    return null;
   }
 };

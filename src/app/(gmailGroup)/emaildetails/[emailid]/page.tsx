@@ -2,7 +2,6 @@ import { fetchPost } from "@/lib/mail-server-action";
 import { ArrowLeft, RotateCcw, Trash2, Copy } from "lucide-react";
 import Link from "next/link";
 
-
 const EmailDetail = async ({
   params: { emailid },
 }: {
@@ -24,6 +23,19 @@ const EmailDetail = async ({
   }
 
   const post = await fetchPost(emailid);
+
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-[#0B1623] text-white">
+        <div className="p-6 max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold mb-6">Error</h1>
+          <div className="text-gray-300 leading-relaxed">
+            <p>Error fetching email</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // const handleCopy = () => {
   //   navigator.clipboard.writeText(post);
