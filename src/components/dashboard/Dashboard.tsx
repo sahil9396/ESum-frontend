@@ -8,24 +8,28 @@ import { getGmail } from "@/lib/mail-server-action";
 import { useInView } from "react-intersection-observer";
 
 const Dashboard = ({
-  data: { data, nextPageToken },
+  data,
   accessToken,
 }: {
   data: {
     data: responseType[];
     nextPageToken: string;
-  };
+  } | null;
   accessToken: string;
 }) => {
-  const [postdata, setPostData] = useState(data);
-  const [nextPageTokenLocal, setNextPageTokenLocal] = useState(nextPageToken);
+  const [postdata, setPostData] = useState<responseType[] | undefined>(
+    data?.data
+  );
+  const [nextPageTokenLocal, setNextPageTokenLocal] = useState(
+    data?.nextPageToken
+  );
   const [menuOpen, setMenuOpen] = useState(false);
   const [ref, inView] = useInView();
 
   async function loadMoreMovies() {
     const data = await getGmail(accessToken, nextPageTokenLocal);
     if (data) {
-      setPostData((prev) => [...prev, ...data.data]);
+      setPostData((prev) => [...(prev || []), ...data?.data]);
       setNextPageTokenLocal(data.nextPageToken);
     }
   }
@@ -71,7 +75,7 @@ const Dashboard = ({
       </nav>
 
       <main className="container mx-auto px-6 pt-24 ">
-        {postdata.length === 0 ? (
+        {!postdata || postdata.length === 0 ? (
           <>No Post</>
         ) : (
           <>
